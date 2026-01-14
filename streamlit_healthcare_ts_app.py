@@ -6,6 +6,22 @@ from statsmodels.tsa.arima.model import ARIMA
 
 st.title("Hospital Admissions Forecasting")
 
+st.markdown("""
+## How to choose p, d, q (Quick Guide)
+
+**d – Differencing**  
+Removes trend to make the series stable.  
+➡ For hospital admissions, **d = 1** is usually enough.
+
+**p – Autoregression**  
+How many past days directly affect today?  
+➡ Chosen from **PACF** intuition.
+
+**q – Moving Average**  
+How long do shocks (unexpected surges) affect the future?  
+➡ Chosen from **ACF** intuition.
+""")
+
 df = pd.read_csv("hospital_daily_admissions.csv", parse_dates=["date"])
 df.set_index("date", inplace=True)
 
